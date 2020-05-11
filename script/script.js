@@ -10,14 +10,13 @@ jQuery(document).ready(function() {
     var template = Handlebars.compile(source);
 
     var myUrl = "http://157.230.17.132:3009/todos";
-    ajaxCall(myUrl, 'GET' , template, listContainer);
+    ajaxGetCall(myUrl, 'GET' , template, listContainer);
     
     sendButton.on('click', function() {
-        
-        var text = inputTex.val().trim();
-        ajaxCall(myUrl, 'PUSH' , template, listContainer);
-
+        var text = inputText.val().trim();
+        ajaxPostCall(myUrl, 'POST' , text, template, listContainer);
     });
+
 
 
     
@@ -27,7 +26,7 @@ jQuery(document).ready(function() {
 
 //____________________ FUNCTIONS _________________//
 
-function ajaxCall(myUrl, method , template, listContainer) {
+function ajaxGetCall(myUrl, method , template, listContainer) {
     
     $.ajax({
         url: myUrl,
@@ -49,4 +48,24 @@ function ajaxCall(myUrl, method , template, listContainer) {
             console.log('Si è verificato un errore nella chiamata');
         }
     });
+}
+
+function ajaxPostCall(myUrl, method , text, template, listContainer) {
+    
+    clear(listContainer);
+
+    $.ajax({
+        url: myUrl,
+        method : method ,
+        data: {
+          "text": text  
+        },
+        success: function() {
+            ajaxGetCall(myUrl, 'GET' , template, listContainer);
+        }
+    });
+}
+
+function clear(element) {
+    element.html('');
 }
