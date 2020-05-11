@@ -4,27 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDoList - Ajax</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     
-    <!-- TITLE -->
-    <h1>ToDo List</h1>
+    <header class="header-page">
+        <div class="container">
+            <h1 class="title">ToDo List</h1>
+        </div>
+    </header>
 
-    <!-- INPUT SECTION -->
-    <section class="input--container">
-        <input id="input-text" type="text" placeholder="Inserisci un elemento">
-        <button id="send-button">Send</button>
-    </section>
+    <main class="main-page container">
+        <div id="rule" class="rule-container-position">
+            <div class="rule-container">
+                <h2 class="rule-title">RULES</h2>
+                <div class="rule-list">
+                    <ol>
+                        <li>Scrivi nella casella di testo</li>
+                        <li>Scrivi ciò che vuoi</li>
+                        <li>Per iniziare a scrivere clicca il pulsante blu</li>
+                    </ol>
+                </div>
+                <div class="rule-button">
+                    <button id="button-rule" class="button-style">INIZIA</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="todo-app" class="hide">
+            <div class="todo-app-container-position">
+                <div class="todo-app-container">
 
-    <!-- LIST ITEM CONTAINER -->
-    <ul id="todo-item-list"></ul>
+                    <!-- INPUT SECTION -->
+                    <section class="input-container">
+                        <input id="input-text" class="input-text" type="text" placeholder="Inserisci un elemento">
+                        <button id="send-button" class="input-button">Send</button>
+                    </section>
+            
+                    <!-- LIST ITEM CONTAINER -->
+                    <ul id="todo-item-list" class="todo-item-list"></ul>
+
+                </div>
+            </div>
+    
+        </div>
+    </main>
+    
+    
 
     <!-- Template Handlebar -->
     <script id="todo-item-template" type="text/x-handlebars-template">
         <li class="todo-item">
             {{ text }}
-            <span id="delete" data-id="{{ id }}">-x-</span>
+            <i class="fas fa-times delete" data-id="{{ id }}"></i>
+            <!-- <span class="delete" data-id="{{ id }}">-x-</span> -->
         </li>
     </script>
       
